@@ -1,0 +1,20 @@
+stages: 
+   - build
+   - test
+     #- deploy
+
+image: golang:1.14
+
+build:
+  stage: build
+  script: 
+   - go build -o demo-webapp
+  artifacts:
+    paths:
+      - demo-webapp
+    expire_in: 1 week
+
+test:
+  stage: test
+  script:
+    - go test -v
